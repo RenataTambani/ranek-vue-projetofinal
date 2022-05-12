@@ -15,7 +15,8 @@ import ProdutosLista from "@/components/ProdutosLista.vue"
 
 export default {
   name: "HomeView",
-  components: ProdutosBuscar, ProdutosLista
+  components: {
+    ProdutosBuscar, ProdutosLista }
 }
 </script>
 
