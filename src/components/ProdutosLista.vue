@@ -2,18 +2,20 @@
   <section class="produtos-container">
     <div v-if="produtos && produtos.length" class="produtos">
      <div class="produto" v-for="(produto, index) in produtos" :key="index"> 
-     <router-link to="/">
-      <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo">
-      <p class="preco">{{produto.preco}}</p>
-      <h2 class="titulo">{{produto.nome}}</h2>
-      <p class="descricao">{{produto.descricao}}</p>
-     </router-link>       
-   </div>
-    <ProdutosPaginar :produtosTotal="produtosTotal" :produtosPorPagina="produtosPorPagina"/>
+        <router-link to="/">
+        <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo">
+        <p class="preco">{{produto.preco}}</p>
+        <h2 class="titulo">{{produto.nome}}</h2>
+        <p class="descricao">{{produto.descricao}}</p>
+        </router-link>       
+      </div>    
     </div>
     <div v-else-if="produtos && produtos.length === 0">
       <p class="sem-resultados">Busca sem resultados. Tente buscar outro termo.</p>
     </div>   
+    <div>
+    <ProdutosPaginar :produtosTotal="produtosTotal" :produtosPorPagina="produtosPorPagina"/>
+    </div>
   </section>
 </template>
 
@@ -30,7 +32,7 @@ export default {
   data() {
     return {
       produtos: null,
-      produtosPorPagina: 3,
+      produtosPorPagina: 6,
       produtosTotal: 0,
     };
   },  
