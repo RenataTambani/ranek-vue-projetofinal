@@ -1,21 +1,25 @@
 <template>
   <section class="produtos-container">
-    <div v-if="produtos && produtos.length" class="produtos">
-     <div class="produto" v-for="(produto, index) in produtos" :key="index"> 
-        <router-link to="/">
-        <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo">
-        <p class="preco">{{produto.preco}}</p>
-        <h2 class="titulo">{{produto.nome}}</h2>
-        <p class="descricao">{{produto.descricao}}</p>
-        </router-link>       
-      </div>    
-    </div>
-    <div v-else-if="produtos && produtos.length === 0">
-      <p class="sem-resultados">Busca sem resultados. Tente buscar outro termo.</p>
-    </div>   
-    <div>
-    <ProdutosPaginar :produtosTotal="produtosTotal" :produtosPorPagina="produtosPorPagina"/>
-    </div>
+    <transition mode="out-in">
+      <div v-if="produtos && produtos.length" class="produtos" key="produtos">
+        <div class="produto" v-for="(produto, index) in produtos" :key="index"> 
+          <router-link to="/">
+          <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo">
+          <p class="preco">{{produto.preco}}</p>
+          <h2 class="titulo">{{produto.nome}}</h2>
+          <p class="descricao">{{produto.descricao}}</p>
+          </router-link>       
+        </div>  
+        <ProdutosPaginar :produtosTotal="produtosTotal" :produtosPorPagina="produtosPorPagina"/>  
+      </div>
+      <div v-else-if="produtos && produtos.length === 0" key="sem-resultado">
+        <p class="sem-resultados">Busca sem resultados. Tente buscar outro termo.</p>
+      </div>   
+      <PaginaCarregando key="carregando" v-else/>
+      <div>
+        
+      </div>
+    </transition>
   </section>
 </template>
 
@@ -32,7 +36,7 @@ export default {
   data() {
     return {
       produtos: null,
-      produtosPorPagina: 6,
+      produtosPorPagina: 9,
       produtosTotal: 0,
     };
   },  
@@ -49,22 +53,26 @@ export default {
   }, 
   methods: {
     getProdutos() {
+      setTimeout(() => {
       api.get(this.url).then(response => {
         this.produtosTotal = Number(response.headers["x-total-count"]);
         this.produtos = response.data;
-
+  
       // fetch("http://localhost:3000/produto")
       //   .then(response => response.json())
       //   .then(response => {
       //     this.produtos = response;
         });
-      },    
-  },
+      }, 1500);    
+  }
+},
   created() {
     this.getProdutos();
   }
 };
 </script>
+
+
 
 <style scoped>
 

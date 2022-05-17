@@ -2,7 +2,6 @@
   <form>
     <input type="text" name="busca" id="busca" v-model="busca" placeholder="Buscar...">
     <input type="submit" name="lupa"  id="lupa" value="buscar" @click.prevent="buscarProdutos">
-    {{busca}}
   </form>   
 </template>
 

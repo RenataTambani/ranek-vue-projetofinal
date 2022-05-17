@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import HomeView from "@/views/HomeView.vue";
+import Home from "./views/Home.vue";
+import Produto from "./views/Produto.vue";
 
 Vue.use(Router);
 
@@ -11,10 +12,16 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: HomeView,
+      component: Home
     },
+    {
+      path: "/produto/:id",
+      name: "produto",
+      component: Produto,
+      props: true
+    }
   ],
   scrollBehavior() {
     return window.scrollTo({ top: 0, behavior: "smooth" });
-  },
+  }
 });
