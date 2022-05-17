@@ -3,6 +3,7 @@ import Router from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import ProdutoItem from "@/views/ProdutoItem.vue";
 import LogIn from "@/views/LogIn.vue";
+import UsuarioView from "@/views/usuario/UsuarioView.vue";
 
 Vue.use(Router);
 
@@ -25,7 +26,11 @@ export default new Router({
       path: "/login",
       name: "login",
       component: LogIn,
-      props: true,
+    },
+    {
+      path: "/usuario",
+      name: "usuario",
+      component: UsuarioView,
     },
   ],
   scrollBehavior() {
