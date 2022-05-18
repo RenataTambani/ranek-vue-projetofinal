@@ -7,7 +7,7 @@
     <label for="senha">Senha</label>
     <input id="senha" name="senha" v-model="senha" type="password">
     <label for="cep">Cep</label>
-    <input id="cep" name="cep" v-model="cep" type="text">
+    <input id="cep" name="cep" v-model="cep" @keyup="preencherCep" type="text">
     <label for="rua">Rua</label>
     <input id="rua" name="rua" v-model="rua" type="text">
     <label for="numero">Numero</label>
@@ -25,16 +25,31 @@
 </template>
 
 <script>
-import { mapFields } from "@/helpers.js"
+import { mapFields } from "@/helpers.js";
+import { getCep } from "@/services.js"
 
 export default {
   name: "UsuarioForm",
   computed: {
     ...mapFields({
-      fields: ["nome", "email", "senha", "rua", "numero", "bairro", "cidade", "estado"],
+      fields: ["nome", "email", "senha", "rua", "numero", "cep", "bairro", "cidade", "estado"],
       base: "usuario",
       mutation: "UPDATE_USUARIO"
     }),
+  }, 
+  methods: {
+    preencherCep() {
+      const cep = this.cep.replace(/\D/g, "");
+      if(cep.length === 8) {
+        getCep(cep).then(response => {
+          this.rua = response.data.logradouro;
+          this.bairro = response.data.bairro;
+          this.cidade = response.data.localidade;
+          this.estado = response.data.uf;
+
+        })
+      }
+    }
   }
 }
 </script>
