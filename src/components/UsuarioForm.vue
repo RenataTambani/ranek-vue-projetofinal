@@ -46,7 +46,6 @@ export default {
           this.bairro = response.data.bairro;
           this.cidade = response.data.localidade;
           this.estado = response.data.uf;
-
         })
       }
     }
