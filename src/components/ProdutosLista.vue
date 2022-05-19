@@ -57,7 +57,6 @@ export default {
       api.get(this.url).then(response => {
         this.produtosTotal = Number(response.headers["x-total-count"]);
         this.produtos = response.data;
-  
       // fetch("http://localhost:3000/produto")
       //   .then(response => response.json())
       //   .then(response => {

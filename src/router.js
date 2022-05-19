@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import ProdutoItem from "@/views/ProdutoItem.vue";
+import ProdutoItem from "@/views/ProdutoView.vue";
 import LogIn from "@/views/LogIn.vue";
 import UsuarioView from "@/views/usuario/UsuarioView.vue";
 import UsuarioProdutos from "@/views/usuario/UsuarioProdutos.vue";
@@ -54,11 +54,6 @@ export default new Router({
           path: "editar",
           name: "usuario-editar",
           component: UsuarioEditar,
-        },
-        {
-          path: "",
-          name: "usuario",
-          component: UsuarioProdutos,
         },
       ],
     },
