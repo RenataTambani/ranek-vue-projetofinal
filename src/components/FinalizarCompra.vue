@@ -25,7 +25,7 @@ export default {
         comprador_id: this.usuario.email,
         vendedor_id: this.produto.usuario_id,
         produto: this.produto,
-        endereço: {
+        endereco: {
           cep: this.usuario.cep,
           rua: this.usuario.rua,
           numero: this.usuario.numero,
