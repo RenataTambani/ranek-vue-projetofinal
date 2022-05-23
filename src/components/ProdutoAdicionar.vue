@@ -24,6 +24,7 @@ export default {
         preco: "",
         descricao: "",
         fotos: null,
+        vendido: "false",
       }
     }
   },
